@@ -1,0 +1,10 @@
+/home/wangfeng
+
+#!/bin/bash
+root=/home/wangfeng/stylus-service
+parameter=
+war=app.py
+chown -R work.work ${root}
+runuser - work -s /bin/sh -c "ps -ef | grep ${war} | grep -v grep | awk '{print \$2}' | xargs -i kill -9 {}"
+#runuser - work -s /bin/sh -c "cd ${root} && (python ${root}/${war} ${parameter} >/dev/null 2>>${root}/con.out &)"
+runuser - work -s /bin/sh -c "cd ${root} && (python ${root}/${war} ${parameter} >${root}/con.out 2>&1 &)"
